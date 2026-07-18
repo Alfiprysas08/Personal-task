@@ -1,21 +1,45 @@
+import { notFound } from "next/navigation";
+
 import WeeklyPlannerForm from "@/components/weekly-planner/WeeklyPlannerForm";
 
-interface PageProps {
-  params: {
+import {
+  getWeeklyPlannerById,
+} from "@/lib/services/weekly-planner.service";
+
+interface Props {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
-export default function EditWeeklyPlannerPage({
+export default async function EditWeeklyPlannerPage({
   params,
-}: PageProps) {
-  return (
-    <div className="max-w-xl mx-auto">
-      <h1 className="text-3xl font-bold mb-6">
-        Edit Weekly Task
-      </h1>
+}: Props) {
+  const { id } = await params;
 
-      <WeeklyPlannerForm id={params.id} />
+  const planner =
+    await getWeeklyPlannerById(id);
+
+  if (!planner) {
+    notFound();
+  }
+
+  return (
+    <div className="max-w-xl mx-auto space-y-6">
+      <div>
+        <h1 className="text-3xl font-bold">
+          Edit Weekly Task
+        </h1>
+
+        <p className="text-muted-foreground">
+          Update your weekly task.
+        </p>
+      </div>
+
+      <WeeklyPlannerForm
+        planner={planner}
+        isEdit
+      />
     </div>
   );
 }
