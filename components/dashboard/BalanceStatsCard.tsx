@@ -1,8 +1,7 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
-import { Eye, EyeOff } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+import { Eye, EyeOff, Wallet } from "lucide-react";
 import StatsCard from "@/components/dashboard/StatsCard";
 import { Button } from "@/components/ui/button";
 
@@ -10,7 +9,6 @@ interface BalanceStatsCardProps {
   title: string;
   value: string;
   description: string;
-  icon: LucideIcon;
   iconColor?: string;
 }
 
@@ -36,7 +34,6 @@ export default function BalanceStatsCard({
   title,
   value,
   description,
-  icon,
   iconColor,
 }: BalanceStatsCardProps) {
   const isVisible =
@@ -55,7 +52,7 @@ export default function BalanceStatsCard({
         title={title}
         value={isVisible ? value : HIDDEN_VALUE}
         description={description}
-        icon={icon}
+        icon={Wallet}
         iconColor={iconColor}
       />
 

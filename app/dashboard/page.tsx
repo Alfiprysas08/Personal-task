@@ -7,7 +7,6 @@ import CompletedTasks from "@/components/dashboard/CompletedTasks";
 
 import {
   FolderKanban,
-  Wallet,
   TrendingUp,
   TrendingDown,
 } from "lucide-react";
@@ -61,7 +60,6 @@ export default async function DashboardPage() {
           title="Total Balance"
           value={currency(financeSummary.balance)}
           description="Current Balance"
-          icon={Wallet}
           iconColor="text-emerald-500"
         />
 
