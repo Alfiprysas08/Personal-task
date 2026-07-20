@@ -32,13 +32,13 @@ export default function ProjectCard({
     <Link href={`/dashboard/projects/${id}`}>
       <Card className="cursor-pointer transition-shadow hover:shadow-lg">
         <CardHeader>
-          <div className="flex items-center gap-3">
-            <FolderKanban className="h-6 w-6 text-blue-500" />
+          <div className="flex items-start gap-3">
+            <FolderKanban className="mt-0.5 h-6 w-6 shrink-0 text-blue-500" />
 
-            <div>
-              <CardTitle>{name}</CardTitle>
+            <div className="min-w-0">
+              <CardTitle className="break-words">{name}</CardTitle>
 
-              <p className="mt-1 text-sm text-muted-foreground">
+              <p className="mt-1 break-words text-sm text-muted-foreground">
                 {description}
               </p>
             </div>
@@ -46,10 +46,10 @@ export default function ProjectCard({
         </CardHeader>
 
         <CardContent className="space-y-4">
-          <div className="flex items-center justify-between text-sm">
+          <div className="flex items-center justify-between gap-3 text-sm">
             <span>Status</span>
 
-            <span className="font-medium">
+            <span className="break-words text-right font-medium">
               {status}
             </span>
           </div>
@@ -70,7 +70,7 @@ export default function ProjectCard({
           </div>
 
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <CalendarDays className="h-4 w-4" />
+            <CalendarDays className="h-4 w-4 shrink-0" />
 
             <span>{dueDate}</span>
           </div>

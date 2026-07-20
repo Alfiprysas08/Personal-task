@@ -13,9 +13,9 @@ export default async function ProjectsPage() {
   return (
     <div className="space-y-8">
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="min-w-0">
+          <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
             Projects
           </h1>
 
@@ -24,7 +24,7 @@ export default async function ProjectsPage() {
           </p>
         </div>
 
-        <Button asChild>
+        <Button asChild className="w-full sm:w-auto">
           <Link href="/dashboard/projects/create">
             <Plus className="mr-2 h-4 w-4" />
             New Project

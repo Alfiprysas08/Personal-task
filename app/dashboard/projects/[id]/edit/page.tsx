@@ -23,7 +23,7 @@ export default async function EditProjectPage({
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-3xl font-bold">
+        <h1 className="text-2xl font-bold sm:text-3xl">
           Edit Project
         </h1>
 

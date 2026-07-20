@@ -42,26 +42,29 @@ export default function WeeklyPlannerCard({
   }
 
   return (
-    <div className="flex items-center justify-between rounded-lg border bg-zinc-900 p-3 transition hover:bg-zinc-800">
-      <div className="flex items-center gap-3">
+    <div className="flex items-start justify-between gap-3 rounded-lg border bg-zinc-900 p-3 transition hover:bg-zinc-800">
+      <div className="flex min-w-0 items-start gap-3">
         <input
           type="checkbox"
           checked={planner.completed}
           onChange={handleToggle}
+          className="mt-1 shrink-0"
         />
 
         <span
           className={
-            planner.completed
+            `break-words text-sm ${
+              planner.completed
               ? "line-through text-zinc-500"
               : "text-white"
+            }`
           }
         >
           {planner.title}
         </span>
       </div>
 
-      <div className="flex gap-1">
+      <div className="flex shrink-0 gap-1">
         <Link
           href={`/dashboard/weekly-planner/edit/${planner.id}`}
         >

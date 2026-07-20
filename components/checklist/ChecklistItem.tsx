@@ -41,18 +41,21 @@ export default function ChecklistItem({
   }
 
   return (
-    <div className="flex items-center justify-between rounded-lg border p-3">
-      <div className="flex items-center gap-3">
+    <div className="flex items-start justify-between gap-3 rounded-lg border p-3">
+      <div className="flex min-w-0 items-start gap-3">
         <Checkbox
           checked={checklist.completed}
           onCheckedChange={handleToggle}
+          className="mt-0.5 shrink-0"
         />
 
         <span
           className={
-            checklist.completed
+            `break-words text-sm ${
+              checklist.completed
               ? "line-through text-muted-foreground"
               : ""
+            }`
           }
         >
           {checklist.title}
@@ -64,6 +67,7 @@ export default function ChecklistItem({
         size="icon"
         disabled={loading}
         onClick={handleDelete}
+        className="shrink-0"
       >
         <Trash2 className="h-4 w-4 text-red-500" />
       </Button>

@@ -50,7 +50,7 @@ export default function ChecklistForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex gap-2"
+      className="flex flex-col gap-2 sm:flex-row"
     >
       <Input
         placeholder="Add new checklist..."
@@ -62,6 +62,7 @@ export default function ChecklistForm({
       <Button
         type="submit"
         disabled={loading || !title.trim()}
+        className="w-full sm:w-auto"
       >
         <Plus className="mr-2 h-4 w-4" />
         {loading ? "Adding..." : "Add"}

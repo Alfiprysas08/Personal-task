@@ -3,8 +3,6 @@ import {
   CalendarDays,
   FolderKanban,
   Wallet,
-  Calendar,
-  NotebookPen,
   Settings,
 } from "lucide-react";
 

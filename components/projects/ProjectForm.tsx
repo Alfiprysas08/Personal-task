@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 import {
@@ -24,7 +24,7 @@ export default function ProjectForm({
 }: ProjectFormProps) {
   const router = useRouter();
 
-  const [formData, setFormData] = useState<Project>({
+  const [formData, setFormData] = useState<Project>(project ?? {
     name: "",
     description: "",
     status: "Planning",
@@ -34,12 +34,6 @@ export default function ProjectForm({
   });
 
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    if (project) {
-      setFormData(project);
-    }
-  }, [project]);
 
   function handleChange(
     e: React.ChangeEvent<
@@ -84,7 +78,7 @@ export default function ProjectForm({
 
   return (
     <Card>
-      <CardContent className="pt-6">
+      <CardContent className="p-4 sm:p-6">
         <form
           onSubmit={handleSubmit}
           className="space-y-6"

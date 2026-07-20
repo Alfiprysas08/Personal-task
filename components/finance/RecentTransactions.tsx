@@ -23,19 +23,25 @@ export default function RecentTransactions() {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [loading, setLoading] = useState(true);
 
-  async function loadTransactions() {
-    try {
-      const data = await getTransactions();
-      setTransactions(data);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  }
-
   useEffect(() => {
-    loadTransactions();
+    let ignore = false;
+
+    async function loadInitialTransactions() {
+      try {
+        const data = await getTransactions();
+        if (!ignore) setTransactions(data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        if (!ignore) setLoading(false);
+      }
+    }
+
+    void loadInitialTransactions();
+
+    return () => {
+      ignore = true;
+    };
   }, []);
 
   async function handleDelete(id: string) {
@@ -79,21 +85,21 @@ export default function RecentTransactions() {
             {transactions.slice(0, 5).map((transaction) => (
               <div
                 key={transaction.id}
-                className="flex items-center justify-between rounded-lg border p-3"
+                className="flex flex-col gap-3 rounded-lg border p-3 sm:flex-row sm:items-center sm:justify-between"
               >
-                <div className="flex items-center gap-3">
+                <div className="flex min-w-0 items-start gap-3">
                   {transaction.type === "income" ? (
-                    <ArrowUpCircle className="h-5 w-5 text-green-500" />
+                    <ArrowUpCircle className="mt-0.5 h-5 w-5 shrink-0 text-green-500" />
                   ) : (
-                    <ArrowDownCircle className="h-5 w-5 text-red-500" />
+                    <ArrowDownCircle className="mt-0.5 h-5 w-5 shrink-0 text-red-500" />
                   )}
 
-                  <div>
-                    <p className="font-medium">
+                  <div className="min-w-0">
+                    <p className="truncate font-medium">
                       {transaction.category}
                     </p>
 
-                    <p className="text-sm text-muted-foreground">
+                    <p className="break-words text-sm text-muted-foreground">
                       {transaction.note}
                     </p>
 
@@ -103,9 +109,9 @@ export default function RecentTransactions() {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div className="flex items-center justify-between gap-2 sm:justify-end sm:gap-3">
                   <span
-                    className={`font-semibold ${
+                    className={`min-w-0 break-words text-sm font-semibold sm:text-base ${
                       transaction.type === "income"
                         ? "text-green-500"
                         : "text-red-500"
@@ -119,26 +125,28 @@ export default function RecentTransactions() {
                     }).format(transaction.amount)}
                   </span>
 
-                  <Link
-                    href={`/dashboard/finance/${transaction.id}/edit`}
-                  >
+                  <div className="flex shrink-0 gap-1">
+                    <Link
+                      href={`/dashboard/finance/${transaction.id}/edit`}
+                    >
+                      <Button
+                        size="icon"
+                        variant="ghost"
+                      >
+                        <Pencil className="h-4 w-4" />
+                      </Button>
+                    </Link>
+
                     <Button
                       size="icon"
                       variant="ghost"
+                      onClick={() =>
+                        handleDelete(transaction.id!)
+                      }
                     >
-                      <Pencil className="h-4 w-4" />
+                      <Trash2 className="h-4 w-4 text-red-500" />
                     </Button>
-                  </Link>
-
-                  <Button
-                    size="icon"
-                    variant="ghost"
-                    onClick={() =>
-                      handleDelete(transaction.id!)
-                    }
-                  >
-                    <Trash2 className="h-4 w-4 text-red-500" />
-                  </Button>
+                  </div>
                 </div>
               </div>
             ))}

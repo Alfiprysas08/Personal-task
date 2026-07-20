@@ -1,11 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 import {
   createWeeklyPlanner,
-  getWeeklyPlannerById,
   updateWeeklyPlanner,
   WeeklyPlanner,
 } from "@/lib/services/weekly-planner.service";
@@ -35,15 +34,8 @@ export default function WeeklyPlannerForm({
 }: WeeklyPlannerFormProps) {
   const router = useRouter();
 
-  const [title, setTitle] = useState("");
-  const [day, setDay] = useState("Monday");
-
-  useEffect(() => {
-    if (planner) {
-      setTitle(planner.title);
-      setDay(planner.day);
-    }
-  }, [planner]);
+  const [title, setTitle] = useState(planner?.title ?? "");
+  const [day, setDay] = useState(planner?.day ?? "Monday");
 
   async function handleSubmit(
     e: React.FormEvent<HTMLFormElement>
@@ -68,7 +60,7 @@ export default function WeeklyPlannerForm({
 
   return (
     <Card>
-      <CardContent className="pt-6 space-y-5">
+      <CardContent className="space-y-5 p-4 sm:p-6">
         <form
           onSubmit={handleSubmit}
           className="space-y-5"

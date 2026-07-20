@@ -18,13 +18,13 @@ export default function StatsCard({
 }: StatsCardProps) {
   return (
     <Card className="transition-all hover:shadow-lg">
-      <CardContent className="flex items-center justify-between p-6">
-        <div>
+      <CardContent className="flex items-start justify-between gap-4 p-4 sm:p-6">
+        <div className="min-w-0">
           <p className="text-sm text-muted-foreground">
             {title}
           </p>
 
-          <h2 className="mt-2 text-3xl font-bold">
+          <h2 className="mt-2 break-words text-2xl font-bold sm:text-3xl">
             {value}
           </h2>
 
@@ -34,9 +34,9 @@ export default function StatsCard({
         </div>
 
         <div
-          className={`rounded-xl bg-muted p-4 ${iconColor}`}
+          className={`shrink-0 rounded-xl bg-muted p-3 sm:p-4 ${iconColor}`}
         >
-          <Icon className="h-7 w-7" />
+          <Icon className="h-6 w-6 sm:h-7 sm:w-7" />
         </div>
       </CardContent>
     </Card>

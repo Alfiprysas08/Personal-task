@@ -25,9 +25,9 @@ export default async function EditWeeklyPlannerPage({
   }
 
   return (
-    <div className="max-w-xl mx-auto space-y-6">
+    <div className="mx-auto max-w-xl space-y-6">
       <div>
-        <h1 className="text-3xl font-bold">
+        <h1 className="text-2xl font-bold sm:text-3xl">
           Edit Weekly Task
         </h1>
 

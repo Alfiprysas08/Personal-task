@@ -34,16 +34,16 @@ export default async function ProjectDetailPage({
   return (
     <div className="space-y-8">
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <Button asChild variant="outline">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <Button asChild variant="outline" className="w-full sm:w-auto">
           <Link href="/dashboard/projects">
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back
           </Link>
         </Button>
 
-        <div className="flex gap-3">
-          <Button asChild>
+        <div className="grid grid-cols-2 gap-3 sm:flex">
+          <Button asChild className="w-full sm:w-auto">
             <Link href={`/dashboard/projects/${project.id}/edit`}>
               <Pencil className="mr-2 h-4 w-4" />
               Edit
@@ -65,14 +65,14 @@ export default async function ProjectDetailPage({
       />
 
       {/* Checklist */}
-      <div className="rounded-xl border p-6 space-y-6">
+      <div className="space-y-6 rounded-xl border p-4 sm:p-6">
         <div>
-          <h2 className="text-xl font-semibold">
+          <h2 className="text-lg font-semibold sm:text-xl">
             Project Checklist
           </h2>
 
           <p className="text-sm text-muted-foreground">
-            Track everything you've completed for this project.
+            Track everything you&apos;ve completed for this project.
           </p>
         </div>
 

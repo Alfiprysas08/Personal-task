@@ -37,7 +37,18 @@ export default function WeeklyPlannerList() {
   }
 
   useEffect(() => {
-    loadData();
+    let ignore = false;
+
+    async function loadInitialData() {
+      const data = await getWeeklyPlanners();
+      if (!ignore) setPlanners(data);
+    }
+
+    void loadInitialData();
+
+    return () => {
+      ignore = true;
+    };
   }, []);
 
   return (

@@ -3,9 +3,9 @@ import { Button } from "@/components/ui/button";
 
 export default function FinanceHeader() {
   return (
-    <div className="flex items-center justify-between">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">
+    <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className="min-w-0">
+        <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
           Finance
         </h1>
 
@@ -14,7 +14,7 @@ export default function FinanceHeader() {
         </p>
       </div>
 
-      <Button asChild>
+      <Button asChild className="w-full sm:w-auto">
         <Link href="/dashboard/finance/create">
           + New Transaction
         </Link>

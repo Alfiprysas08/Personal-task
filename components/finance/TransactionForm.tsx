@@ -85,7 +85,7 @@ export default function TransactionForm({
 
   return (
     <Card>
-      <CardContent className="pt-6">
+      <CardContent className="p-4 sm:p-6">
         <form
           onSubmit={handleSubmit}
           className="space-y-4"
