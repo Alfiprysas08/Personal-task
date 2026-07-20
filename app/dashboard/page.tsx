@@ -1,5 +1,6 @@
 export const dynamic = "force-dynamic";
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
+import BalanceStatsCard from "@/components/dashboard/BalanceStatsCard";
 import StatsCard from "@/components/dashboard/StatsCard";
 import UpcomingTasks from "@/components/dashboard/UpcomingTasks";
 import CompletedTasks from "@/components/dashboard/CompletedTasks";
@@ -56,7 +57,7 @@ export default async function DashboardPage() {
           iconColor="text-blue-500"
         />
 
-        <StatsCard
+        <BalanceStatsCard
           title="Total Balance"
           value={currency(financeSummary.balance)}
           description="Current Balance"
