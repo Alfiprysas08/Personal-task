@@ -6,6 +6,7 @@ import { getProjects } from "@/lib/services/project.service";
 import { Button } from "@/components/ui/button";
 import ProjectList from "@/components/projects/ProjectList";
 
+export const dynamic = "force-dynamic";
 
 export default async function ProjectsPage() {
   const projects = await getProjects();
